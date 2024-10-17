@@ -8,12 +8,12 @@ package ucr.ac.cr.tm2100.g3.game.view;
  *
  * @author danar
  */
-public class FrameHistory extends javax.swing.JFrame {
+public class JugarFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrameHistory
+     * Creates new form JugarFrame
      */
-    public FrameHistory() {
+    public JugarFrame() {
         initComponents();
         
         this.setLocationRelativeTo(null);
@@ -28,32 +28,21 @@ public class FrameHistory extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnReturnMenu = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnReturnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ButtonVolverMenu.png"))); // NOI18N
-        btnReturnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnMenuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnReturnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 650, 190, 80));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Historia.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 795));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 717, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 437, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnReturnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnMenuActionPerformed
-        GUIFrameMenu newMenu = new GUIFrameMenu();
-        
-        newMenu.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnReturnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,26 +61,24 @@ public class FrameHistory extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameHistory().setVisible(true);
+                new JugarFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReturnMenu;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
