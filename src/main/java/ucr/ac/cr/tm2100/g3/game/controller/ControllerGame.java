@@ -4,31 +4,37 @@
  */
 package ucr.ac.cr.tm2100.g3.game.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import ucr.ac.cr.tm2100.g3.game.view.FrameHistory;
+import ucr.ac.cr.tm2100.g3.game.view.FrameInstructions;
 import ucr.ac.cr.tm2100.g3.game.view.GUIFrameMenu;
-
+import ucr.ac.cr.tm2100.g3.game.view.JugarFrame;
 /**
  *
  * @author danar
  */
-public class ControllerGame implements ActionListener{
+public class ControllerGame {
     private GUIFrameMenu guiFrameG;
+    private FrameInstructions instructions;
+    private FrameHistory history;
+    private JugarFrame jugar;
+    private ControllerButtons controllerB;
     
-
     public ControllerGame() {
+        System.out.println("ControlGame");
         guiFrameG = new GUIFrameMenu();
+        guiFrameG.setLocationRelativeTo(null);
         
-        this.guiFrameG.listenButton((ActionListener) this);
+        instructions = new FrameInstructions();
+        history = new FrameHistory();
+        jugar = new JugarFrame();
+        
+        controllerB = new ControllerButtons();
+        controllerB.setGuiFrameG(guiFrameG);
+        controllerB.setFrameInstructions(instructions);
+        controllerB.setFrameHistory(history);
+        controllerB.setJugarFrame(jugar);
+        
+        guiFrameG.setController(controllerB);
         guiFrameG.setVisible(true);
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()){
-            case "->":
-                System.exit(0);
-                break;
-        }
     }
 }

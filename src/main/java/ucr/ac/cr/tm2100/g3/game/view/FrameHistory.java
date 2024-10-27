@@ -4,6 +4,7 @@
  */
 package ucr.ac.cr.tm2100.g3.game.view;
 
+import java.awt.event.ActionListener;
 /**
  *
  * @author danar
@@ -15,8 +16,10 @@ public class FrameHistory extends javax.swing.JFrame {
      */
     public FrameHistory() {
         initComponents();
-        
-        this.setLocationRelativeTo(null);
+    }
+    
+    public void setController(ActionListener controller){
+        this.btnReturnMenu.addActionListener(controller);
     }
 
     /**
@@ -35,11 +38,7 @@ public class FrameHistory extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnReturnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ButtonVolverMenu.png"))); // NOI18N
-        btnReturnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnMenuActionPerformed(evt);
-            }
-        });
+        btnReturnMenu.setActionCommand("volverMenu");
         getContentPane().add(btnReturnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 650, 190, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Historia.png"))); // NOI18N
@@ -48,47 +47,19 @@ public class FrameHistory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReturnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnMenuActionPerformed
-        GUIFrameMenu newMenu = new GUIFrameMenu();
-        
-        newMenu.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnReturnMenuActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    
+    public static void main (String args[]){
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FrameHistory().setVisible(true);
             }
         });
     }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturnMenu;

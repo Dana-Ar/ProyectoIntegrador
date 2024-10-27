@@ -1,15 +1,12 @@
 ucr\ac\cr\tm2100\g3\game\Game.class
-ucr\ac\cr\tm2100\g3\game\view\GUIFrameMenu$4.class
 ucr\ac\cr\tm2100\g3\game\view\FrameInstructions$1.class
 ucr\ac\cr\tm2100\g3\game\view\JugarFrame.class
-ucr\ac\cr\tm2100\g3\game\view\GUIFrameMenu$3.class
+ucr\ac\cr\tm2100\g3\game\view\PanelJugar.class
 ucr\ac\cr\tm2100\g3\game\view\FrameHistory.class
 ucr\ac\cr\tm2100\g3\game\view\FrameHistory$1.class
-ucr\ac\cr\tm2100\g3\game\view\FrameHistory$2.class
 ucr\ac\cr\tm2100\g3\game\view\JugarFrame$1.class
-ucr\ac\cr\tm2100\g3\game\view\FrameInstructions$2.class
 ucr\ac\cr\tm2100\g3\game\controller\ControllerGame.class
-ucr\ac\cr\tm2100\g3\game\view\GUIFrameMenu$2.class
 ucr\ac\cr\tm2100\g3\game\view\GUIFrameMenu$1.class
 ucr\ac\cr\tm2100\g3\game\view\FrameInstructions.class
 ucr\ac\cr\tm2100\g3\game\view\GUIFrameMenu.class
+ucr\ac\cr\tm2100\g3\game\controller\ControllerButtons.class

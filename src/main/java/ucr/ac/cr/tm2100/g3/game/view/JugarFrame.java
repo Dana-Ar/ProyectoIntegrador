@@ -4,11 +4,18 @@
  */
 package ucr.ac.cr.tm2100.g3.game.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import ucr.ac.cr.tm2100.g3.game.controller.ControllerButtons;
+import ucr.ac.cr.tm2100.g3.game.controller.ControllerGame;
+
 /**
  *
  * @author danar
  */
 public class JugarFrame extends javax.swing.JFrame {
+    
+    private ControllerGame controllerG;
 
     /**
      * Creates new form JugarFrame
@@ -17,7 +24,14 @@ public class JugarFrame extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
+        
     }
+    
+    public void setController(ActionListener controller){
+        this.btnVolverMenu.addActionListener(controller);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,57 +42,57 @@ public class JugarFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelJugar1 = new ucr.ac.cr.tm2100.g3.game.view.PanelJugar();
+        btnVolverMenu = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelJugar1.setPreferredSize(new java.awt.Dimension(1067, 800));
+
+        btnVolverMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laberinto 2024-Final-ButtonVolverMenu.png"))); // NOI18N
+        btnVolverMenu.setActionCommand("volverMenu");
+        btnVolverMenu.setPreferredSize(new java.awt.Dimension(205, 86));
+
+        javax.swing.GroupLayout panelJugar1Layout = new javax.swing.GroupLayout(panelJugar1);
+        panelJugar1.setLayout(panelJugar1Layout);
+        panelJugar1Layout.setHorizontalGroup(
+            panelJugar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugar1Layout.createSequentialGroup()
+                .addContainerGap(816, Short.MAX_VALUE)
+                .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        panelJugar1Layout.setVerticalGroup(
+            panelJugar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugar1Layout.createSequentialGroup()
+                .addContainerGap(661, Short.MAX_VALUE)
+                .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 717, Short.MAX_VALUE)
+            .addComponent(panelJugar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+            .addComponent(panelJugar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JugarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void main (String args[]){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JugarFrame().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolverMenu;
+    private ucr.ac.cr.tm2100.g3.game.view.PanelJugar panelJugar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,6 @@
 package ucr.ac.cr.tm2100.g3.game;
 
 import ucr.ac.cr.tm2100.g3.game.controller.ControllerGame;
-
 /**
  *
  * @author danar
@@ -13,6 +12,6 @@ import ucr.ac.cr.tm2100.g3.game.controller.ControllerGame;
 public class Game {
 
     public static void main(String[] args) {
-        ControllerGame controllerGame = new ControllerGame();
+        ControllerGame controller = new ControllerGame();
     }
 }
