@@ -15,72 +15,79 @@ import ucr.ac.cr.tm2100.g3.game.view.JugarFrame;
  *
  * @author danar
  */
-public class ControllerButtons implements ActionListener{
+public class ControllerButtons implements ActionListener { //clase encargada de escuchar los botones
+
     private GUIFrameMenu guiFrameG;
-    private FrameInstructions instructions;
-    private FrameHistory history;
-    private JugarFrame jugar;
+    private FrameInstructions instructionsFrame;
+    private FrameHistory historyFrame;
+    private JugarFrame jugarFrame;
 
-    public ControllerButtons() {
-
-    }
-
-    public void setGuiFrameG(GUIFrameMenu guiFrameG) {
+    public ControllerButtons(GUIFrameMenu guiFrameG, FrameInstructions instructionsFrame, FrameHistory historyFrame, JugarFrame jugarFrame) {
         this.guiFrameG = guiFrameG;
+        this.instructionsFrame = instructionsFrame;
+        this.historyFrame = historyFrame;
+        this.jugarFrame = jugarFrame;
     }
-    
-    public void setFrameInstructions(FrameInstructions instructions){
-        this.instructions = instructions;
-        instructions.setController(this);
+
+    public void setControllers() {
+        guiFrameG.setController(this);
+        instructionsFrame.setController(this);
+        historyFrame.setController(this);
+        jugarFrame.setController(this);
     }
-    
-    public void setFrameHistory(FrameHistory history){
-        this.history = history;
-        history.setController(this);
-    }
-    
-    public void setJugarFrame(JugarFrame jugar){
-        this.jugar = jugar;
-        jugar.setController(this);
-    }
-    
-    
-    
-    public void showHistory(){
+
+    public void showHistory() {  //Todas estas se encargan de las acciones que se realizan al presionar los botones
         guiFrameG.setVisible(false);
-        history.setLocationRelativeTo(null);
-        history.setVisible(true);
+        historyFrame.setLocationRelativeTo(null);
+        historyFrame.setVisible(true);
     }
-    
-    public void showInstructions(){
+
+    public void showInstructions() {
         guiFrameG.setVisible(false);
-        instructions.setLocationRelativeTo(null);
-        instructions.setVisible(true);
+        instructionsFrame.setLocationRelativeTo(null);
+        instructionsFrame.setVisible(true);
     }
-    
-    public void showGame(){
+
+    public void showGame() {
         guiFrameG.setVisible(false);
-        jugar.setLocationRelativeTo(null);
-        jugar.setVisible(true);
+        jugarFrame.setLocationRelativeTo(null);
+        jugarFrame.setVisible(true);
+        jugarFrame.setFocusable(true);
+        jugarFrame.requestFocus();
+        
+        jugarFrame.getPanel().reiniciar();  //Esto 
+        jugarFrame.getPanel().repaint();
     }
-    
+
     public void extit() {
         System.exit(0);
     }
-    
-    public void returnMenu(){
-        history.setVisible(false);
-        instructions.setVisible(false);
-        jugar.setVisible(false);
-        
+
+    public void returnMenu() {
+        historyFrame.setVisible(false);
+        instructionsFrame.setVisible(false);
+        jugarFrame.setVisible(false);
+
         guiFrameG.setLocationRelativeTo(null);
         guiFrameG.setVisible(true);
     }
 
+    public void reiniciarJuego() {
+        jugarFrame.getPanel().reiniciar();
+        jugarFrame.getPanel().repaint();
+        jugarFrame.setFocusable(true);
+        jugarFrame.requestFocus();
+        jugarFrame.reiniciarJuego();
+    }
+    
+    public void pausar(){
+        jugarFrame.pausarJuego();
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { //El switch que se encarga de que se ejecuten los metodos segun el caso (De los botones)
         String action = e.getActionCommand();
-        switch (action){
+        switch (action) {
             case "instrucciones":
                 showInstructions();
                 break;
@@ -96,7 +103,14 @@ public class ControllerButtons implements ActionListener{
             case "volverMenu":
                 returnMenu();
                 break;
+
+            case "Pausa":
+                pausar();
+                break;
+            case "Reiniciar":
+                reiniciarJuego();
+                break;
         }
     }
-    
+
 }

@@ -6,7 +6,6 @@ package ucr.ac.cr.tm2100.g3.game.view;
 
 
 import java.awt.event.ActionListener;
-import ucr.ac.cr.tm2100.g3.game.controller.ControllerButtons;
 
 /**
  *

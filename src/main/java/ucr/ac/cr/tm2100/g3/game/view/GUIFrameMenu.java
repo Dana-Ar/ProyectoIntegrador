@@ -4,11 +4,7 @@
  */
 package ucr.ac.cr.tm2100.g3.game.view;
 
-
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ucr.ac.cr.tm2100.g3.game.controller.ControllerButtons;
-
 /**
  *
  * @author danar
@@ -19,7 +15,6 @@ public class GUIFrameMenu extends javax.swing.JFrame {
      * Creates new form GUIFrameMenu
      */
     public GUIFrameMenu() {
-        System.out.println("Menu");
         initComponents();
     }
     
@@ -29,6 +24,8 @@ public class GUIFrameMenu extends javax.swing.JFrame {
         this.btnExtit.addActionListener( controller);
         this.btnJugar.addActionListener(controller);
     }
+    
+    
     
 
 

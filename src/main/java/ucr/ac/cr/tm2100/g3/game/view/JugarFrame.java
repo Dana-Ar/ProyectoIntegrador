@@ -4,10 +4,12 @@
  */
 package ucr.ac.cr.tm2100.g3.game.view;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ucr.ac.cr.tm2100.g3.game.controller.ControllerButtons;
-import ucr.ac.cr.tm2100.g3.game.controller.ControllerGame;
+import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,7 +17,11 @@ import ucr.ac.cr.tm2100.g3.game.controller.ControllerGame;
  */
 public class JugarFrame extends javax.swing.JFrame {
     
-    private ControllerGame controllerG;
+//    private ImageIcon corazon1,corazon2,corazon3;
+    private JLabel lblVidas, lblTimer;
+    private Timer timer;
+    private int tiempo = 120;
+    
 
     /**
      * Creates new form JugarFrame
@@ -23,12 +29,95 @@ public class JugarFrame extends javax.swing.JFrame {
     public JugarFrame() {
         initComponents();
         
+        panelJugar1.setPanelJugar(this);
         this.setLocationRelativeTo(null);
+        panelJugar1.iniciarHilo();
         
+        labelTiempo.setText("Tiempo: " + tiempo);
+        labelTiempo.setFont(new java.awt.Font("Candara", 1, 15));
+        labelVidas.setText("Vida: " + panelJugar1.getVidasPersonaje() + "/ 3");
+        labelVidas.setFont(new java.awt.Font("Candara", 1, 18));
+
+        iniciarTimer();
+        
+        corazonLabel1.setVisible(true);
+        corazonLabel2.setVisible(true);
+        corazonLabel3.setVisible(true);
     }
     
     public void setController(ActionListener controller){
         this.btnVolverMenu.addActionListener(controller);
+        this.btnReiniciar.addActionListener(controller);
+        this.btnPausa.addActionListener(controller);
+    }
+    
+    public PanelJugar getPanel(){
+        return panelJugar1;
+    }
+    
+    public void iniciarTimer() {
+        tiempo=120;
+        timer = new Timer(1000, e -> { //Se mide en milisegundos
+        tiempo=tiempo-1; //es decir, cada segundo el timer va a reducir en 1(1 segundo menos)
+        labelTiempo.setText("Tiempo: " + tiempo);
+        mostrarObjetos();
+        if (tiempo <= 0) {
+            timer.stop();
+            JOptionPane.showMessageDialog(this, new ImageIcon("./src/main/resources/pantallaTimeOut.png"));
+            reiniciarJuego();
+            }
+        });
+        timer.start();
+    }
+    
+    public void pausarJuego() {  //Si al presionarlo, el tiempo esta coriendo, se detiene. Si el tiempo ya esta detenido, vuelve a correr
+        if (timer.isRunning()) {
+            timer.stop();
+        } else {
+            timer.restart();
+        }
+    }
+    
+    public void listenKey(KeyListener listen){
+        this.addKeyListener(listen);
+    }
+    
+    public void reiniciarJuego() {
+        panelJugar1.reiniciar();
+        tiempo = 120;
+        labelVidas.setText("Vida: " + panelJugar1.getVidasPersonaje() + "/ 3");
+        labelTiempo.setText("Tiempo: " + tiempo);
+        timer.restart();
+    }
+    
+    public void actualizarVidas(int vidas) {  //Recive por parametros la cantidad de vidas para poder mostrarlas
+        labelVidas.setText("Vida: " + panelJugar1.getVidasPersonaje() + "/ 3");
+    }
+    
+    public void mostrarObjetos(){  //Muestra los corazones que hemos recolectado
+        
+        if(panelJugar1.getObjetosRecolectados()!=0){
+            if(panelJugar1.getObjetosRecolectados()==1){
+            
+            corazonLabel1.setVisible(true);
+            corazonLabel2.setVisible(false);
+            corazonLabel3.setVisible(false);
+            }
+            if(panelJugar1.getObjetosRecolectados()==2){
+                corazonLabel1.setVisible(true);
+                corazonLabel2.setVisible(true);
+                corazonLabel3.setVisible(false);
+            }
+            if(panelJugar1.getObjetosRecolectados()>=3){
+                corazonLabel1.setVisible(true);
+                corazonLabel2.setVisible(true);
+                corazonLabel3.setVisible(true);
+            }
+        } else {
+            corazonLabel1.setVisible(false);
+            corazonLabel2.setVisible(false);
+            corazonLabel3.setVisible(false);
+        }
     }
     
     
@@ -42,44 +131,60 @@ public class JugarFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelJugar1 = new ucr.ac.cr.tm2100.g3.game.view.PanelJugar();
         btnVolverMenu = new javax.swing.JButton();
+        btnPausa = new javax.swing.JButton();
+        btnReiniciar = new javax.swing.JButton();
+        corazonLabel3 = new javax.swing.JLabel();
+        corazonLabel2 = new javax.swing.JLabel();
+        corazonLabel1 = new javax.swing.JLabel();
+        labelVidas = new javax.swing.JLabel();
+        labelTiempo = new javax.swing.JLabel();
+        panelJugar1 = new ucr.ac.cr.tm2100.g3.game.view.PanelJugar();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        panelJugar1.setPreferredSize(new java.awt.Dimension(1067, 800));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolverMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/laberinto 2024-Final-ButtonVolverMenu.png"))); // NOI18N
         btnVolverMenu.setActionCommand("volverMenu");
-        btnVolverMenu.setPreferredSize(new java.awt.Dimension(205, 86));
+        getContentPane().add(btnVolverMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 640, 210, 80));
+
+        btnPausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ButtonPausa.png"))); // NOI18N
+        btnPausa.setActionCommand("Pausa");
+        getContentPane().add(btnPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 470, 120, 50));
+
+        btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ButtonReiniciar.png"))); // NOI18N
+        btnReiniciar.setActionCommand("Reiniciar");
+        getContentPane().add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 150, 40));
+
+        corazonLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CorazonFrame.png"))); // NOI18N
+        getContentPane().add(corazonLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 218, -1, -1));
+
+        corazonLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CorazonFrame.png"))); // NOI18N
+        getContentPane().add(corazonLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(897, 216, -1, -1));
+
+        corazonLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CorazonFrame.png"))); // NOI18N
+        getContentPane().add(corazonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(839, 212, 50, 50));
+        getContentPane().add(labelVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, 150, 60));
+        getContentPane().add(labelTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, 160, 50));
+
+        panelJugar1.setPreferredSize(new java.awt.Dimension(500, 500));
 
         javax.swing.GroupLayout panelJugar1Layout = new javax.swing.GroupLayout(panelJugar1);
         panelJugar1.setLayout(panelJugar1Layout);
         panelJugar1Layout.setHorizontalGroup(
             panelJugar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugar1Layout.createSequentialGroup()
-                .addContainerGap(816, Short.MAX_VALUE)
-                .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         panelJugar1Layout.setVerticalGroup(
             panelJugar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugar1Layout.createSequentialGroup()
-                .addContainerGap(661, Short.MAX_VALUE)
-                .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+            .addGap(0, 680, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelJugar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelJugar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(panelJugar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 680, 680));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VistaFinalProgra.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,7 +197,15 @@ public class JugarFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPausa;
+    private javax.swing.JButton btnReiniciar;
     private javax.swing.JButton btnVolverMenu;
+    private javax.swing.JLabel corazonLabel1;
+    private javax.swing.JLabel corazonLabel2;
+    private javax.swing.JLabel corazonLabel3;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelTiempo;
+    private javax.swing.JLabel labelVidas;
     private ucr.ac.cr.tm2100.g3.game.view.PanelJugar panelJugar1;
     // End of variables declaration//GEN-END:variables
 }
